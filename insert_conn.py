@@ -50,6 +50,8 @@ insert_to_tag = "INSERT INTO TAG (Link, Tagtext) VALUES (%s, %s)"
 
 #user = ("anon", 471, 147)
 
-#mycursor.execute(sqlFormula, user)
+#log = ("s@", "123qwe", "anon", 471, 312)
+
+#mycursor.execute(insert_to_logged, log)
 
 #mydb.commit()
