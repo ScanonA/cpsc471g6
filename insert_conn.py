@@ -20,7 +20,7 @@ insert_to_admin = "INSERT INTO ADMIN (Email_address, Password, Name, ID, IP_Addr
 
 insert_to_advertiser = "INSERT INTO ADVERTISER (Email_address, Password, Name, ID, IP_Address, Company_name) VALUES (%s, %s, %s, %s, %s, %s)"
 
-inser_to_post = "INSERT INTO POST (Link, Caption, Email_address)"
+inser_to_post = "INSERT INTO POST (Link, Caption, Email_address) VALUES (%s, %s, %s)"
 
 insert_to_picture = "INSERT INTO PICTURE (Link, Caption, Resolution, Name, ID) VALUES (%s, %s, %s, %s, %s)"
 
