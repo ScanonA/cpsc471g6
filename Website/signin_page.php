@@ -1,7 +1,7 @@
 <html>
 <body>
 <h1>Sign-up</h1>
-<a href="mainpage.php">Home</a> </a>
+<a href="index.php">Home</a> </a>
 <a href="login_page.php">login</a>
 <form action="signin.php" method="post">
    E-mail: <input type="email" name="email"><br>
