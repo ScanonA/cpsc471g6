@@ -24,7 +24,7 @@ $password = $_POST["password"];
 $name = $_POST["name"];
 $id = rand(100 , 999);
 $ipaddr = getRealIpAddr();
-echo $email. "<br>". $password. "<br>". $name. "<br>". $ipaddr. "<br>";
+//echo $email. "<br>". $password. "<br>". $name. "<br>". $ipaddr. "<br>";
 
 
 // Create connection
