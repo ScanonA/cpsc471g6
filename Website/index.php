@@ -2,6 +2,7 @@
 <body text="white" style="background-color:grey;">
 <h1>mysocial</h1>
 <a href="signin_page.php">Sign-in</a>
+<a href="login_page.php">Log-in</a>
 
 <?php
 // Create connection
