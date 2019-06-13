@@ -19,10 +19,12 @@ function getRealIpAddr()
     return $ip;
 }
 
+$email = $_POST["email"];
+$password = $_POST["password"];
 $name = $_POST["name"];
-$id = $_POST["id"];
+$id = rand(100 , 999);
 $ipaddr = getRealIpAddr();
-echo $name. "<br>". $id. "<br>". $ipaddr. "<br>";
+echo $email. "<br>". $password. "<br>". $name. "<br>". $ipaddr. "<br>";
 
 
 // Create connection
@@ -34,13 +36,17 @@ if (mysqli_connect_errno($con))
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   
-  $sql = "INSERT INTO USER (Name, ID, IP_Address) VALUES ('". $name."','". $id ."', '". $ipaddr ."')";
- 
+  $sql = "INSERT INTO USER (Name, ID, IP_ADDRESS) VALUES ('". $name."','". $id ."','". $ipaddr ."')";
+  $sql1 = "INSERT INTO LOGGED_IN (Email_address, password, Name, ID, IP_ADDRESS) VALUES ('".$email."','".$password."','".$name."', '" .$id. "','". $ipaddr ."')";
+  
  if (!mysqli_query($con,$sql))
   {
   die('Error: ' . mysqli_error($con));
   }
-  
+  if(!mysqli_query($con,$sql1))
+  {
+  die('Error' . mysqli_error($con));
+  }
 echo "1 record added";
 
 mysqli_close($con);

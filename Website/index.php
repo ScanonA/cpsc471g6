@@ -1,9 +1,10 @@
 <html>
 <body>
-<h1>mysocial</h1>
+<h1>Sign-up</h1>
 <form action="add.php" method="post">
-   E-mail: <input type="text" name="name"><br>
-   Password: <input type="text" name="id"><br>
+   E-mail: <input type="email" name="email"><br>
+   Password: <input type="password" name="password"><br>
+   Username: <input type= "text" name="name"><br>
    <input type="submit" value="add">
 </form>
 
