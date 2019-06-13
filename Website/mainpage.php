@@ -1,5 +1,5 @@
 <html>
-<body>
+<body text="white" style="background-color:grey;">
 <h1>mysocial</h1>
 <a href="index.php">Login</a>
 
@@ -15,18 +15,19 @@ if (mysqli_connect_errno($con))
 
 $posts=mysqli_query($con,"SELECT * FROM POST");
 
-echo "<table border='1'>
+echo "<table border='22'>
 <tr>
 <th>Link</th>
 <th>Caption</th>
-<th>Email_address</th>
 </tr>";
+// <th>Email_address</th>
+
 while($row = mysqli_fetch_array($posts))
  {
  echo "<tr>";
- echo "<td>" . $row['Link'] . "</td>";
+ echo "<td>" . "<a href=" . $row['Link'] . ">click here</a>" . "</td>";
  echo "<td>" . $row['Caption'] . "</td>";
- echo "<td>" . $row['Email_address'] . "</td>";
+//  echo "<td>" . $row['Email_address'] . "</td>";
  echo "</tr>";
  }
 echo "</table>";
