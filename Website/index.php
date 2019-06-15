@@ -21,7 +21,7 @@ if(!isset($_SESSION['email'])) {
   $id = rand(100 , 999);
   $_SESSION['id'] = $id;
   $_SESSION['name'] = "anon";
-  echo "I love you Eena";
+  // echo "I love you Eena";
 } else {
   echo "<br>". "Welcome, ". $_SESSION['name'];
   $email = $_SESSION['email'];

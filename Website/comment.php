@@ -3,7 +3,9 @@
 <html>
 <body text="white" style="background-color:grey;">
 <h1>Comments</h1>
-<a href="index.php">Login</a>
+<a href="index.php">Home</a>
+<a href="signin_page.php">Sign-up</a>
+<a href="login_page.php">Log-in</a>
 
 <?php
 // Create connection
