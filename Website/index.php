@@ -3,7 +3,7 @@
 <html>
 <body text="white" style="background-color:grey;">
 <h1>mysocial</h1>
-<a href="signin_page.php">Sign-in</a>
+<a href="signin_page.php">Sign-up</a>
 <a href="login_page.php">Log-in</a>
 
 <?php
@@ -22,14 +22,16 @@ echo "<table border='22'>
 <tr>
 <th>Link</th>
 <th>Caption</th>
+<th>Comments</th>
 </tr>";
 // <th>Email_address</th>
 
 while($row = mysqli_fetch_array($posts))
  {
  echo "<tr>";
- echo "<td>" . "<a href=" . $row['Link'] . ">click here</a>" . "</td>";
+ echo "<td>" . "<a href=" . $row['Link'] . ">view</a>" . "</td>";
  echo "<td>" . $row['Caption'] . "</td>";
+ echo "<td>" . "<a href=comment.php?link=".$row['Link'].">comments</a>" . "</td>";
 //  echo "<td>" . $row['Email_address'] . "</td>";
  echo "</tr>";
  }
