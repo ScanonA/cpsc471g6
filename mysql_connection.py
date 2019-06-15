@@ -111,15 +111,16 @@ mycursor.execute("CREATE TABLE THREAD (Name CHAR(16) NOT NULL,\
 					FOREIGN KEY(Email_address) \
 						REFERENCES Logged_in(Email_address)ON DELETE CASCADE ON UPDATE CASCADE)")
 
-mycursor.execute("CREATE TABLE COMMENT (CText VARCHAR(140),\
-						Name CHAR(16) NOT NULL,\
-						ID INT NOT NULL,\
-						Link CHAR(255) NOT NULL,\
-					PRIMARY KEY(Name, ID),UNIQUE(Link),\
-					FOREIGN KEY(Link) \
-						REFERENCES POST(Link)ON DELETE CASCADE ON UPDATE CASCADE, \
-					FOREIGN KEY(Name,ID) \
-						REFERENCES USER(Name,ID)ON DELETE CASCADE ON UPDATE CASCADE)")
+# exported this from phpmyadmin once I got comments working
+mycursor.execute("CREATE TABLE `comment` (\
+ 				`CText` varchar(140) NOT NULL,\
+ 				`Name` char(16) NOT NULL,\
+ 				`ID` int(11) NOT NULL,\
+ 				`Link` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,\
+ 				PRIMARY KEY (`Name`,`ID`,`CText`,`Link`) USING BTREE,\
+ 				KEY `Link` (`Link`) USING BTREE,\
+ 				CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`Link`) REFERENCES `post` (`Link`) ON DELETE CASCADE ON UPDATE CASCADE,\
+ 				CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`Name`, `ID`) REFERENCES `user` (`Name`, `ID`) ON DELETE CASCADE ON UPDATE CASCADE)")
 
 mycursor.execute("CREATE TABLE CONTAINS (Name CHAR(16) NOT NULL,\
 						Link CHAR(255) NOT NULL,\

@@ -25,10 +25,10 @@ if (mysqli_connect_errno($con))
 
 if(isset($_GET['comment']))
 {
-  $placeholder_name = 'bungle';
-  $placeholder_id = 789;
+  // $placeholder_name = 'bungle';
+  // $placeholder_id = 789;
   $my_comment = $_GET["comment"];
-  mysqli_query($con,"INSERT INTO COMMENT (CText, Name, ID, Link) VALUES('". $my_comment."','". $placeholder_name ."','". $placeholder_id ."','". $currentlink ."')");
+  mysqli_query($con,"INSERT INTO COMMENT (CText, Name, ID, Link) VALUES('". $my_comment."','". $_SESSION['name'] ."','". $_SESSION['id'] ."','". $currentlink ."')");
    echo "Comment: '". $my_comment ."' submitted!";
 }
 
