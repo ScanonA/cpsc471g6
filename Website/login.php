@@ -35,7 +35,9 @@ if (mysqli_connect_errno($con))
             <a href="login_page.php">Try Again</a>
             <?php
         }else {
-            echo "Welcome ". $name. "<br>";
+            $_SESSION['email'] = $email;
+            $_SESSION['password'] = $password;
+            echo "Welcome ". $name. "<br>". $_SESSION['email']. "<br>". $_SESSION['password']. "<br>";
         }
    
 

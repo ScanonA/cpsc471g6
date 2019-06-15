@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <html>
 <body text="white" style="background-color:grey;">
 <h1>mysocial</h1>

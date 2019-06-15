@@ -47,7 +47,9 @@ if (mysqli_connect_errno($con))
   {
   die('Error' . mysqli_error($con));
   }
-echo "1 record added";
+$_SESSION['email'] = $email;
+$_SESSION['password'] = $password;
+echo "1 record added";//. $_SESSION['email']. "<br>". $_SESSION['password']. "<br>";
 
 mysqli_close($con);
 ?>
