@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 
 <?php
 
@@ -22,7 +24,7 @@ function getRealIpAddr()
 $email = $_POST["email"];
 $password = $_POST["password"];
 $name = $_POST["name"];
-$id = rand(100 , 999);
+$id = $_SESSION['id'];
 $ipaddr = getRealIpAddr();
 //echo $email. "<br>". $password. "<br>". $name. "<br>". $ipaddr. "<br>";
 
@@ -49,7 +51,10 @@ if (mysqli_connect_errno($con))
   }
 $_SESSION['email'] = $email;
 $_SESSION['password'] = $password;
+$_SESSION['name'] = $name;
 echo "1 record added";//. $_SESSION['email']. "<br>". $_SESSION['password']. "<br>";
+header('Location:index.php');
+
 
 mysqli_close($con);
 ?>

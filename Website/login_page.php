@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <html>
 <body>
 <h1>Log-In</h1>

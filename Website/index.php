@@ -16,7 +16,21 @@ if (mysqli_connect_errno($con))
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-$posts=mysqli_query($con,"SELECT * FROM POST");
+if(!isset($_SESSION['email'])) {
+  $posts=mysqli_query($con,"SELECT * FROM POST");
+  $id = rand(100 , 999);
+  $_SESSION['id'] = $id;
+  $_SESSION['name'] = "anon";
+  echo "I love you Eena";
+} else {
+  echo "<br>". "Welcome, ". $_SESSION['name'];
+  $email = $_SESSION['email'];
+  $posts=mysqli_query($con,"SELECT * FROM POST, LOGGED_IN WHERE email = '$email'");
+  //$posts=mysqli_query($con,"SELECT * FROM POST");
+  echo $_SESSION['id']. "<br>";//. $_SESSION['password']. "<br>";
+}
+
+
 
 echo "<table border='22'>
 <tr>
