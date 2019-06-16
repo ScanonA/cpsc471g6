@@ -38,24 +38,39 @@ if (mysqli_connect_errno($con))
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  ?>
-
-  <form action="index.php" method="get">
-     Caption: <input type="text" name="caption"><br>
-     Link: <input type="text" name="link"><br>
-     <input type="submit" value="Submit">
-  </form>
+  $threads=mysqli_query($con,"SELECT * FROM THREAD"); // get threads here
+  echo "<form action='index.php' method='get'>
+          <br><h3> Create a post</h3>
+          Caption: <input type='text' name='caption' placeholder = 'Optional'><br>
+          Link: <input type='text' name='link' placeholder = 'Required'><br>
+          Thread: <select name='thread' id='threadselection'>
+                    <option value='' selected disabled hidden>Optional</option>";
+            while($thread = mysqli_fetch_array($threads)) {
+              echo "<option value='".$thread['Name']."'>".$thread['Name']."</option>";
+            }
+  echo           "</select>
+          <input type='submit' value='Submit'>
+        </form>";
   
-  <?php
   if(isset($_GET['caption']) && isset($_GET['link']))
   {
     $my_link = $_GET['link'];
-    if(isset($_SESSION['email'])) {
-      mysqli_query($con,"INSERT INTO POST (Link, Caption, Email_address) VALUES('". $my_link."','". $_GET['caption'] ."','". $_SESSION['email'] ."')");
-    } else {
-      mysqli_query($con,"INSERT INTO POST (Link, Caption) VALUES('". $my_link."','". $_GET['caption'] ."')");
+    if($my_link == "") {
+      echo "Please submit a link!";
     }
-    echo "Link: '". $my_link ."' submitted!";
+    else {
+      if(isset($_SESSION['email'])) {
+        mysqli_query($con,"INSERT INTO POST (Link, Caption, Email_address) VALUES('". $my_link."','". $_GET['caption'] ."','". $_SESSION['email'] ."')");
+      } else {
+        mysqli_query($con,"INSERT INTO POST (Link, Caption) VALUES('". $my_link."','". $_GET['caption'] ."')");
+      }
+      if(isset($_GET['thread'])) {
+        $_submitted_thread = $_GET['thread'];
+        echo "Thread: '". $_submitted_thread ."' selected!<br>";
+        mysqli_query($con,"INSERT INTO CONTAINS (Name, Link) VALUES('". $_submitted_thread ."','". $my_link ."')");
+      }
+      echo "Link: '<a href='".$my_link."'>". $my_link ."</a>' submitted!";
+    }
   }
 
 if(!isset($_SESSION['email'])) { // get posts here
