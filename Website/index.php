@@ -3,7 +3,7 @@
 <html>
 <body text="white" style="background-color:grey;">
 <h1>mysocial</h1>
-<a href="signin_page.php">Sign-up</a>
+<a href="sign-up.php">Sign-up</a>
 <a href="login_page.php">Log-in</a>
 
 <?php
@@ -25,7 +25,9 @@ if(!isset($_SESSION['email'])) {
 } else {
   echo "<br>". "Welcome, ". $_SESSION['name'];
   $email = $_SESSION['email'];
-  $posts=mysqli_query($con,"SELECT * FROM POST, LOGGED_IN WHERE email = '$email'");
+  $posts=mysqli_query($con,"SELECT SUBSCRIBES_TO.Name, POST.Caption, CONTAINS.Link 
+                            FROM POST, SUBSCRIBES_TO, THREAD, CONTAINS 
+                            WHERE SUBSCRIBES_TO.Email_address = '$email' AND SUBSCRIBES_TO.Name = CONTAINS.Name AND SUBSCRIBES_TO.NAME = THREAD.NAME AND CONTAINS.Link = POST.Link");
   //$posts=mysqli_query($con,"SELECT * FROM POST");
   echo $_SESSION['id']. "<br>";//. $_SESSION['password']. "<br>";
 }
