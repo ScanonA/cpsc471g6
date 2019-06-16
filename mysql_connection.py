@@ -116,7 +116,7 @@ mycursor.execute("CREATE TABLE `comment` (\
  				`CText` varchar(140) NOT NULL,\
  				`Name` char(16) NOT NULL,\
  				`ID` int(11) NOT NULL,\
- 				`Link` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,\
+ 				`Link` char(255) NOT NULL,\
  				PRIMARY KEY (`Name`,`ID`,`CText`,`Link`) USING BTREE,\
  				KEY `Link` (`Link`) USING BTREE,\
  				CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`Link`) REFERENCES `post` (`Link`) ON DELETE CASCADE ON UPDATE CASCADE,\
