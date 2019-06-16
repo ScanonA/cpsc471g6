@@ -9,7 +9,17 @@ echo "<html>
   <input type = 'submit' name = 'submit search'> </button>
 </form>";
 if(isset($_GET['command']) && $_GET['command'] == 'logout'){
-  session_unset();
+  $_SESSION = array();
+  if(ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+      $params["path"], $params["domain"],
+      $params["secure"], $params["httponly"]
+    );
+  }
+  session_destroy();
+  session_start();
+  header('Location:index.php');
 }
 if(!isset($_SESSION['email'])) {
   echo "<a href='sign-up.php'>Sign-up </a>
