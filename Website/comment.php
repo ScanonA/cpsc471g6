@@ -1,5 +1,22 @@
 <?php session_start();
 
+function getRealIpAddr()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+    {
+      $ip=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+    {
+      $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+      $ip=$_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+
 $currentlink = $_GET["link"];
 
 echo "<html>
@@ -39,6 +56,12 @@ if (mysqli_connect_errno($con))
 if(isset($_GET['comment']))
 {
   $my_comment = $_GET["comment"];
+
+  // create anonymous user
+  if(!isset($_SESSION['email'])) {
+    mysqli_query($con,"INSERT INTO USER (Name, ID, IP_ADDRESS) VALUES ('". $_SESSION['name']."','". $_SESSION['id'] ."','". getRealIpAddr() ."')");
+  }
+
   mysqli_query($con,"INSERT INTO COMMENT (CText, Name, ID, Link) VALUES('". $my_comment."','". $_SESSION['name'] ."','". $_SESSION['id'] ."','". $currentlink ."')");
    echo "Comment: '". $my_comment ."' submitted!";
 }

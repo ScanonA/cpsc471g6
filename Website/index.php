@@ -87,9 +87,9 @@ echo "<table border='22'>
 while($row = mysqli_fetch_array($posts))
  {
  echo "<tr>";
- echo "<td>" . "<a href=" . $row['Link'] . ">view</a>" . "</td>";
+ echo "<td>" . "<a href=" . $row['Link'] . " target='_blank'>view</a>" . "</td>";
  echo "<td>" . $row['Caption'] . "</td>";
- echo "<td>" . "<a href=comment.php?link=".$row['Link'].">comments</a>" . "</td>";
+ echo "<td>" . "<a href=comment.php?link=".$row['Link']." target='_blank'>comments</a>" . "</td>";
 //  echo "<td>" . $row['Email_address'] . "</td>";
  echo "</tr>";
  }
