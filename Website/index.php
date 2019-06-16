@@ -95,16 +95,25 @@ echo "<table border='22'>
 <tr>
 <th>Link</th>
 <th>Caption</th>
+<th>Thread(s)</th>
 <th>Comments</th>
 </tr>";
-// <th>Email_address</th>
 
 while($row = mysqli_fetch_array($posts))
  {
+$currentPostsLink = $row['Link'];
+$currentPostsThread = mysqli_query($con,"SELECT CONTAINS.Name FROM CONTAINS WHERE CONTAINS.Link = '".$currentPostsLink."'");
  echo "<tr>";
- echo "<td>" . "<a href=" . $row['Link'] . " target='_blank'>view</a>" . "</td>";
+ echo "<td>" . "<a href=" . $currentPostsLink . " target='_blank'>view</a>" . "</td>";
  echo "<td>" . $row['Caption'] . "</td>";
- echo "<td>" . "<a href=comment.php?link=".$row['Link']." target='_blank'>comments</a>" . "</td>";
+
+    echo "<td>";
+    while($threadrow = mysqli_fetch_array($currentPostsThread)) {
+      echo $threadrow['Name'].",";
+    }  
+    echo "</td>";
+
+ echo "<td>" . "<a href=comment.php?link=".$currentPostsLink." target='_blank'>comments</a>" . "</td>";
 //  echo "<td>" . $row['Email_address'] . "</td>";
  echo "</tr>";
  }
