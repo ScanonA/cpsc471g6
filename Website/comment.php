@@ -20,7 +20,10 @@ function getRealIpAddr()
 $currentlink = $_GET["link"];
 
 echo "<html>
-<body text='white' style='background-color:grey;'>
+<head>
+<link rel='stylesheet' type='text/css' href='tablestyle.css'>
+</head>
+<body text='white' style='background-color:#48755b;'>
 <h3>Showing comments for <a href='".$currentlink."'>". $currentlink ."</a></h3>
 <a href='index.php'>Home </a>";
 

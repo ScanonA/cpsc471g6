@@ -1,7 +1,27 @@
 <?php session_start();
 
+function getRealIpAddr()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+    {
+      $ip=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+    {
+      $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+      $ip=$_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+
 echo "<html>
-<body text='white' style='background-color:grey;'>
+<head>
+<link rel='stylesheet' type='text/css' href='tablestyle.css'>
+</head>
+<body text='white' style='background-color:#48755b;'>
 <h1>mysocial</h1>
 <a href='create_thread.php'>CreateThread</a>
 <form action = 'search_thread.php' method = 'post'>
@@ -80,7 +100,7 @@ if(!isset($_SESSION['email'])) { // get posts here
   $_SESSION['name'] = "anon";
   // echo "I love you Eena";
 } else {
-  echo "<br>". "Welcome, ". $_SESSION['name'];
+  echo "<br>". "<h3>Welcome, ". $_SESSION['name']."<h3/>";
   $email = $_SESSION['email'];
   $posts=mysqli_query($con,"SELECT SUBSCRIBES_TO.Name, POST.Caption, CONTAINS.Link 
                             FROM POST, SUBSCRIBES_TO, THREAD, CONTAINS 
@@ -89,10 +109,17 @@ if(!isset($_SESSION['email'])) { // get posts here
   //echo $_SESSION['id']. "<br>";//. $_SESSION['password']. "<br>";
 }
 
-
+if(isset($_GET['votelink'])) {
+  // create anonymous user
+  if(!isset($_SESSION['email'])) {
+    mysqli_query($con,"INSERT INTO USER (Name, ID, IP_ADDRESS) VALUES ('". $_SESSION['name']."','". $_SESSION['id'] ."','". getRealIpAddr() ."')");
+  }
+  mysqli_query($con,"INSERT INTO VOTE (Link, Name, ID) VALUES('". $_GET['votelink']."','". $_SESSION['name'] ."','". $_SESSION['id'] ."')");
+}
 
 echo "<table border='22'>
 <tr>
+<th>Votes</th>
 <th>Link</th>
 <th>Caption</th>
 <th>Thread(s)</th>
@@ -103,7 +130,9 @@ while($row = mysqli_fetch_array($posts))
  {
 $currentPostsLink = $row['Link'];
 $currentPostsThread = mysqli_query($con,"SELECT CONTAINS.Name FROM CONTAINS WHERE CONTAINS.Link = '".$currentPostsLink."'");
+$currentPostsVotes = mysqli_query($con,"SELECT COUNT(*) AS NUMVOTES FROM VOTE WHERE VOTE.Link = '".$currentPostsLink."'");
  echo "<tr>";
+ echo "<td><a href='index.php?votelink=".$currentPostsLink."'>".mysqli_fetch_array($currentPostsVotes)['NUMVOTES']."</a></td>"; // TODO: change 0 to query # of votes on the link
  echo "<td>" . "<a href=" . $currentPostsLink . " target='_blank'>view</a>" . "</td>";
  echo "<td>" . $row['Caption'] . "</td>";
 
