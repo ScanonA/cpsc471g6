@@ -1,12 +1,20 @@
-<?php session_start();?>
+<?php session_start();
 
-<html>
-<body text="white" style="background-color:grey;">
-<h1>mysocial</h1>
-<a href="sign-up.php">Sign-up</a>
-<a href="login_page.php">Log-in</a>
+echo "<html>
+<body text='white' style='background-color:grey;'>
+<h1>mysocial</h1>";
 
-<?php
+if(isset($_GET['command']) && $_GET['command'] == 'logout'){
+  session_unset();
+}
+if(!isset($_SESSION['email'])) {
+  echo "<a href='sign-up.php'>Sign-up </a>
+        <a href='login_page.php'>Log-in</a>";
+}
+if(isset($_SESSION['email'])) {
+  echo "<a href='index.php?command=logout&'>Log out</a>";
+}
+
 // Create connection
 $con=mysqli_connect("localhost","root","471-my-root","mysocial");
 
@@ -15,8 +23,27 @@ if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
+?>
 
-if(!isset($_SESSION['email'])) {
+<form action="index.php" method="get">
+   Caption: <input type="text" name="caption"><br>
+   Link: <input type="text" name="link"><br>
+   <input type="submit" value="Submit">
+</form>
+
+<?php
+if(isset($_GET['caption']) && isset($_GET['link']))
+{
+  $my_link = $_GET['link'];
+  if(isset($_SESSION['email'])) {
+    mysqli_query($con,"INSERT INTO POST (Link, Caption, Email_address) VALUES('". $my_link."','". $_GET['caption'] ."','". $_SESSION['email'] ."')");
+  } else {
+    mysqli_query($con,"INSERT INTO POST (Link, Caption) VALUES('". $my_link."','". $_GET['caption'] ."')");
+  }
+  echo "Link: '". $my_link ."' submitted!";
+}
+
+if(!isset($_SESSION['email'])) { // get posts here
   $posts=mysqli_query($con,"SELECT * FROM POST");
   $id = rand(100 , 999);
   $_SESSION['id'] = $id;
@@ -25,10 +52,10 @@ if(!isset($_SESSION['email'])) {
 } else {
   echo "<br>". "Welcome, ". $_SESSION['name'];
   $email = $_SESSION['email'];
-  $posts=mysqli_query($con,"SELECT SUBSCRIBES_TO.Name, POST.Caption, CONTAINS.Link 
-                            FROM POST, SUBSCRIBES_TO, THREAD, CONTAINS 
-                            WHERE SUBSCRIBES_TO.Email_address = '$email' AND SUBSCRIBES_TO.Name = CONTAINS.Name AND SUBSCRIBES_TO.NAME = THREAD.NAME AND CONTAINS.Link = POST.Link");
-  //$posts=mysqli_query($con,"SELECT * FROM POST");
+  // $posts=mysqli_query($con,"SELECT SUBSCRIBES_TO.Name, POST.Caption, CONTAINS.Link 
+  //                           FROM POST, SUBSCRIBES_TO, THREAD, CONTAINS 
+  //                           WHERE SUBSCRIBES_TO.Email_address = '$email' AND SUBSCRIBES_TO.Name = CONTAINS.Name AND SUBSCRIBES_TO.NAME = THREAD.NAME AND CONTAINS.Link = POST.Link");
+  $posts=mysqli_query($con,"SELECT * FROM POST");
   echo $_SESSION['id']. "<br>";//. $_SESSION['password']. "<br>";
 }
 

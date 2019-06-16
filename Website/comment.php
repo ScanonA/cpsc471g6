@@ -1,13 +1,23 @@
-<?php session_start();?>
+<?php session_start();
 
-<html>
-<body text="white" style="background-color:grey;">
-<h1>Comments</h1>
-<a href="index.php">Home</a>
-<a href="signin_page.php">Sign-up</a>
-<a href="login_page.php">Log-in</a>
+$currentlink = $_GET["link"];
 
-<?php
+echo "<html>
+<body text='white' style='background-color:grey;'>
+<h3>Showing comments for <a href='".$currentlink."'>". $currentlink ."</a></h3>
+<a href='index.php'>Home </a>";
+
+if(isset($_GET['command']) && $_GET['command'] == 'logout'){
+  session_unset();
+}
+if(!isset($_SESSION['email'])) {
+  echo "<a href='sign-up.php'>Sign-up </a>
+        <a href='login_page.php'>Log-in</a>";
+}
+if(isset($_SESSION['email'])) {
+  echo "<a href='index.php?command=logout&'>Log out</a>";
+}
+
 // Create connection
 $con=mysqli_connect("localhost","root","471-my-root","mysocial");
 
@@ -16,12 +26,11 @@ if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-  $currentlink = $_GET["link"];
 ?>
 
 <form action="comment.php?link=".$currentlink method="get">
    <input type='hidden' name='link' value='<?php echo "$currentlink";?>'/>
-   Comment: <input type="text" name="comment"><br>
+   Leave a comment: <input type="text" name="comment"><br>
    <input type="submit" value="Submit">
 </form>
 
@@ -29,8 +38,6 @@ if (mysqli_connect_errno($con))
 
 if(isset($_GET['comment']))
 {
-  // $placeholder_name = 'bungle';
-  // $placeholder_id = 789;
   $my_comment = $_GET["comment"];
   mysqli_query($con,"INSERT INTO COMMENT (CText, Name, ID, Link) VALUES('". $my_comment."','". $_SESSION['name'] ."','". $_SESSION['id'] ."','". $currentlink ."')");
    echo "Comment: '". $my_comment ."' submitted!";
