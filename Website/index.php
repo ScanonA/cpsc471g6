@@ -60,7 +60,7 @@ if(!isset($_SESSION['email'])) { // get posts here
   $posts=mysqli_query($con,"SELECT SUBSCRIBES_TO.Name, POST.Caption, CONTAINS.Link 
                             FROM POST, SUBSCRIBES_TO, THREAD, CONTAINS 
                             WHERE SUBSCRIBES_TO.Email_address = '$email' AND SUBSCRIBES_TO.Name = CONTAINS.Name AND SUBSCRIBES_TO.NAME = THREAD.NAME AND CONTAINS.Link = POST.Link");
-  //$posts=mysqli_query($con,"SELECT * FROM POST");
+  $posts=mysqli_query($con,"SELECT * FROM POST");
   //echo $_SESSION['id']. "<br>";//. $_SESSION['password']. "<br>";
 }
 
