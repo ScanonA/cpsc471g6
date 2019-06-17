@@ -125,9 +125,10 @@ if(!isset($_SESSION['email'])) { // get posts here
   $posts=mysqli_query($con,"SELECT * FROM POST");
   //echo $_SESSION['id']. "<br>";//. $_SESSION['password']. "<br>";
 }
-if(isset($_SESSION['thread_name'])) {
-  echo "<br><h2>". $_SESSION['thread_name']. "</h2><br>";
-  $posts=mysqli_query($con,"SELECT P.* FROM POST AS P, CONTAINS WHERE P.Link = CONTAINS.Link AND CONTAINS.Name = '".$_SESSION['thread_name']."'");
+if(isset($_GET['thread_name'])) {
+  echo "<br><h2>". $_GET['thread_name']. "</h2><br>";
+  $threadName = $_GET['thread_name'];
+  $posts=mysqli_query($con,"SELECT P.* FROM POST AS P, CONTAINS WHERE P.Link = CONTAINS.Link AND CONTAINS.Name = '".$threadName."'");
 }
 
 if(isset($_GET['votelink'])) {

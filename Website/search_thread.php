@@ -19,7 +19,7 @@ if (!$thread) {
     die('Error: ' . mysqli_error($con));
 }
 while ($thread_result = mysqli_fetch_assoc($thread)) {
-    $name = $thread_result['Name']. "<br>";
+    $name = $thread_result['Name'];
 }
 
 echo "<html>
@@ -32,14 +32,12 @@ echo "<html>
 
 if(!isset($name)) {
     $name = "No thread matched your search";
-    echo $name. " ";
-    ?>
-    <a href="index.php">Home</a>
-    <?php
+    echo $name. "<a href='index.php?thread_name=".$name."'>Home</a>";
+
 } else {
-    $_SESSION ['thread_name'] = $name; 
+    // $_SESSION ['thread_name'] = $name; 
     echo $name;
-    header('Location:index.php');
+    header('Location:index.php?thread_name='.$name);
 }
 ?>
 
