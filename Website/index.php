@@ -49,7 +49,8 @@ if(isset($_GET['command']) && $_GET['command'] == 'logout'){
   header('Location:index.php');
 }
 if(!isset($_SESSION['email'])) {
-  echo "<a href='sign-up.php'>Sign-up </a>
+  echo "<a href='index.php'>Home</a>
+        <a href='sign-up.php'>Sign-up </a>
         <a href='login_page.php'>Log-in</a>";
 }
 if(isset($_SESSION['email'])) {
