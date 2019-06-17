@@ -37,9 +37,9 @@ insert_to_contains = "INSERT INTO CONTAINS (Name, Link) VALUES (%s, %s)"
 
 insert_to_subscribes = "INSERT INTO SUBSCRIBES_TO (Name, Email_address) VALUES (%s, %s)"
 
-insert_to_moderates = "INSERT INTO MODERATES (Name, Email_address, Email_address2) VALUES (%s, %s)"
+insert_to_moderates = "INSERT INTO MODERATES (Name, Email_address, Email_address2) VALUES (%s, %s, %s)"
 
-insert_to_follow = "INSERT INTO FOLLOW (Email_address, Email_address2) VALUES (%s, %s)"
+insert_to_follow = "INSERT INTO FOLLOW (Email_address1, Email_address2) VALUES (%s, %s)"
 
 insert_to_repost = "INSERT INTO REPOST (Link, Name, ID) VALUES (%s, %s, %s)"
 
@@ -57,14 +57,17 @@ user5 =  ("TheLegend27", 4, 333)
 user6 =  ("TheLegend28", 5, 333)
 user7 =  ("BigBadAdmin", 6, 333)
 
-loggedin1 = ("someOne@gmail.com", "noTwo", "Aidan", 0, 1)
-loggedin2 = ("fireman64@gmail.com", "noFires", "Carl", 1, 1)
-loggedin3 = ("bubbleBlower@hotmail.com", "bubbles", "Steven", 2, 1)
-loggedin4 = ("someTwo@gmail.com", "password", "TheLegend27", 4, 1)
-loggedin5 = ("important@outlook.com", "Hard2GuessPassword", "BigBadAdmin", 6, 1)
 
-advertiser1 = ("bigCompany@company.com", "M0ney", "Carl", 3, 0, "Big Company")
-advertiser2 = ("smallCorp@company.com", "adPassword", "TheLegend28", 5, 0, "Small Company")
+loggedin1 = ("someOne@gmail.com", "noTwo", "Aidan", 0, 314)
+loggedin2 = ("fireman64@gmail.com", "noFires", "Carl", 1, 111)
+loggedin3 = ("bubbleBlower@hotmail.com", "bubbles", "Steven", 2, 510)
+loggedin4 = ("someTwo@gmail.com", "password", "TheLegend27", 4, 333)
+loggedin5 = ("important@outlook.com", "Hard2GuessPassword", "BigBadAdmin", 6, 333)
+loggedin6 = ("bigCompany@company.com", "M0ney", "Carl", 3, 222)
+loggedin7 = ("smallCorp@company.com", "adPassword", "TheLegend28", 5, 333)
+
+advertiser1 = ("bigCompany@company.com", "M0ney", "Carl", 3, 222, "Big Company")
+advertiser2 = ("smallCorp@company.com", "adPassword", "TheLegend28", 5, 333, "Small Company")
 
 admin1 =("important@outlook.com", "Hard2GuessPassword", "BigBadAdmin", 6, 333, 1)
 
@@ -76,36 +79,39 @@ post5 = ("page.text5", "Don't do anything I wouldn't", "important@outlook.com")
 
 post6 = ("image.com/image555", "Look at this bubble", "bubbleBlower@hotmail.com")
 post7 = ("image.com/image658", "These fires are out of control", "fireman64@gmail.com")
-post8 = ("image.com/image789", "This was a great victory", "important@outlook.com")
-post9 = ("image.com/image111", "Haha look at this cat", "someTwo@gmail.com")
+post8 = ("image.com/image789", "This was a great victory", "someTwo@gmail.com")
+post9 = ("image.com/image111", "Haha look at this cat", "important@outlook.com")
 
-picture1 = ("image.com/image555", "Look at this bubble", "2080x1440", "Bubble", 0) 
-picture2 = ("image.com/image658", "These fires are out of control", "1000x1000", "fire64", 1) 
+picture1 = ("image.com/image555", "Look at this bubble", "2080x1440", "Steven", 2) 
+picture2 = ("image.com/image658", "These fires are out of control", "1000x1000", "Carl", 1) 
 picture3 = ("image.com/image789", "This was a great victory", "1080x720", "TheLegend27", 4) 
-picture4 = ("image.com/image111", "Haha look at this cat", "1200x1420", "Carl", 3) 
+picture4 = ("image.com/image111", "Haha look at this cat", "1200x1420", "BigBadAdmin", 6) 
 
 
 post10 = ("youtube.com/watch/asfdsaf", "Spoilers for Avengers Endgame", "fireman64@gmail.com")
 post11 = ("youtube.com/watch/ds45ad46", "", "important@outlook.com")
 post12 = ("youtube.com/watch/7fhg7g6", "So many BUBBLES", "someTwo@gmail.com")
-post13 = ("youtube.com/watch/r41ew354r", "Buy gold!!", "")
+post13 = ("youtube.com/watch/r41ew354r", "Buy gold!!", "fireman64@gmail.com")
 post14 = ("youtube.com/watch/d4was564d", "More high quality bubbless", "bubbleBlower@hotmail.com")
 
 video1 = ("youtube.com/watch/asfdsaf", "Spoilers for Avengers Endgame", "1920x1080", "13:45", "Carl", 1)
-video2 = ("youtube.com/watch/ds45ad46", "", "1280x720", "5", "Laughable Linguist", 2)
-video3 = ("youtube.com/watch/7fhg7g6", "So many BUBBLES", "1920x1080", "10:00:02", "Bubble", 0)
-video4 = ("youtube.com/watch/r41ew354r", "Buy gold!!", "280x144", "15:10", "fire64", 1)
-video5 = ("youtube.com/watch/d4was564d", "More high quality bubbless", "3840x2160", "30:40", "Bubble", 0)
+video2 = ("youtube.com/watch/ds45ad46", "", "1280x720", "5", "BigBadAdmin", 6)
+video3 = ("youtube.com/watch/7fhg7g6", "So many BUBBLES", "1920x1080", "10:00:02", "Steven", 2)
+video4 = ("youtube.com/watch/r41ew354r", "Buy gold!!", "280x144", "15:10", "Carl", 1)
+video5 = ("youtube.com/watch/d4was564d", "More high quality bubbless", "3840x2160", "30:40", "Steven", 2)
+
+post15 = ("bigcompany.com", "Check out our sweet merch", "bigCompany@company.com")
+post16 = ("bigcompany.ca", "Check out our Canadian merch", "bigCompany@company.com")
+post17 = ("smallcorperation.com", "Support your local businesses", "smallCorp@company.com")
 
 ad1= ("bigcompany.com", "Check out our sweet merch", 0 , 0, "bigCompany@company.com" )
 ad2= ("bigcompany.ca", "Check out our Canadian merch", 10 , 1, "bigCompany@company.com" )
-ad3= ("smallcorperation.com", "Support your local businesses", 10 , 1, "bigCompany@company.com" )
+ad3= ("smallcorperation.com", "Support your local businesses", 10 , 2, "smallCorp@company.com" )
 
-comment1 = ("Who cares about bubbles when there are fires?", "fire64", 1, "youtube.com/watch/7fhg7g6") 
+comment1 = ("Who cares about bubbles when there are fires?", "Carl", 1, "youtube.com/watch/7fhg7g6") 
 comment2 = ("That really was a bad fire!", "Carl", 3, "image.com/image658") 
-comment3 = ("Yeah. Carl 3, it was.", "fire64", 1, "image.com/image658") 
-comment4 = ("Wow, what cool products", "Steven", 2, "smallcorperation.com") 
-comment5 = ("Wow text posts needing links is kinda weird.", "Aidan", 3, "page.text5") 
+comment3 = ("Wow, what cool products", "Steven", 2, "smallcorperation.com") 
+comment4 = ("Wow text posts needing links is kinda weird.", "Aidan", 0, "page.text5") 
 
 thread1 = ("Bubble Blowers", "bubbleBlower@hotmail.com")
 thread2 = ("Fire Stoppers", "fireman64@gmail.com")
@@ -138,7 +144,7 @@ subscribe6 = ("Text Thread", "bubbleBlower@hotmail.com")
 moderates1 = ("Bubble Blowers", "bubbleBlower@hotmail.com", "important@outlook.com")
 moderates2 = ("Fire Stoppers", "fireman64@gmail.com", "important@outlook.com")
 moderates3 = ("Text Thread", "someTwo@gmail.com", "important@outlook.com")
-moderates4 = ("Not Bubbles", "bubbleBlower@hotmail.", "important@outlook.com")
+moderates4 = ("Not Bubbles", "bubbleBlower@hotmail.com", "important@outlook.com")
 moderates5 = ("Empty Thread", "someTwo@gmail.com", "important@outlook.com")
 
 follow1 =("someOne@gmail.com", "fireman64@gmail.com")
@@ -148,10 +154,10 @@ follow4 =("someTwo@gmail.com", "bubbleBlower@hotmail.com")
 follow5 =("bubbleBlower@hotmail.com", "someTwo@gmail.com")
 follow6 =("bubbleBlower@hotmail.com", "someOne@gmail.com")
 
-repost1 = ("image.com/image789", "Bubble", 3) 
+repost1 = ("image.com/image789", "Steven", 2) 
 
-vote1 =  ("youtube.com/watch/d4was564d", "Bubble", 0) 
-vote2 =  ("youtube.com/watch/d4was564d", "Aidan", 3) 
+vote1 =  ("youtube.com/watch/d4was564d", "Steven", 2) 
+vote2 =  ("youtube.com/watch/d4was564d", "Aidan", 0) 
 vote3 =  ("image.com/image658", "Carl", 3) 
 
 report1 = ("youtube.com/watch/r41ew354r", "TheLegend27", 4) 
@@ -159,6 +165,7 @@ report1 = ("youtube.com/watch/r41ew354r", "TheLegend27", 4)
 tag1 =  ("youtube.com/watch/asfdsaf", "Spoilers") 
 
 inThread= ("")
+
 mycursor.execute(insert_to_user, user1)
 mycursor.execute(insert_to_user, user2)
 mycursor.execute(insert_to_user, user3)
@@ -175,6 +182,11 @@ mycursor.execute(insert_to_logged, loggedin4)
 mycursor.execute(insert_to_logged, loggedin5)
 mycursor.execute(insert_to_admin, admin1)
 
+mycursor.execute(insert_to_logged, loggedin6)
+mycursor.execute(insert_to_logged, loggedin7)
+mycursor.execute(insert_to_advertiser, advertiser1)
+mycursor.execute(insert_to_advertiser, advertiser2)
+
 mycursor.execute(inser_to_post, post1)
 mycursor.execute(inser_to_post, post2)
 mycursor.execute(inser_to_post, post3)
@@ -186,9 +198,7 @@ mycursor.execute(inser_to_post, post7)
 mycursor.execute(inser_to_post, post8)
 mycursor.execute(inser_to_post, post9)
 
-mydb.commit()
-
-mycursor.execute(insert_to_picture, picture1)
+mycursor.execute(insert_to_picture, picture1) 
 mycursor.execute(insert_to_picture, picture2)
 mycursor.execute(insert_to_picture, picture3)
 mycursor.execute(insert_to_picture, picture4)
@@ -206,15 +216,18 @@ mycursor.execute(insert_to_video, video3)
 mycursor.execute(insert_to_video, video4)
 mycursor.execute(insert_to_video, video5)
 
-# mycursor.execute(insert_to_ad, ad1)
-# mycursor.execute(insert_to_ad, ad2)
-# mycursor.execute(insert_to_ad, ad3)
+mycursor.execute(inser_to_post, post15)
+mycursor.execute(inser_to_post, post16)
+mycursor.execute(inser_to_post, post17)
+
+#mycursor.execute(insert_to_ad, ad1)
+#mycursor.execute(insert_to_ad, ad2)
+#mycursor.execute(insert_to_ad, ad3)#
 
 mycursor.execute(insert_to_comment, comment1)
 mycursor.execute(insert_to_comment, comment2)
 mycursor.execute(insert_to_comment, comment3)
 mycursor.execute(insert_to_comment, comment4)
-mycursor.execute(insert_to_comment, comment5)
 
 mycursor.execute(insert_to_thread, thread1)
 mycursor.execute(insert_to_thread, thread2)
