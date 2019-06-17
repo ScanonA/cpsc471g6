@@ -18,16 +18,23 @@ function getRealIpAddr()
 }
 
 echo "<html>
-<head>
-<link rel='stylesheet' type='text/css' href='tablestyle.css'>
-</head>
-<body text='white' style='background-color:#48755b;'>
-<h1>mysocial</h1>
-<a href='create_thread.php'>CreateThread</a>
-<form action = 'search_thread.php' method = 'post'>
-  <input type = 'text' name = 'search' placeholder = 'Search For Threads'>
-  <input type = 'submit' name = 'submit search'> </button>
-</form>";
+    <head>
+    <link rel='stylesheet' type='text/css' href='tablestyle.css'>
+    </head>
+    <body text='white' style='background-color:#48755b;'>
+    <h1>mysocial</h1>";
+    
+    
+    if(isset($_SESSION['email'])) {
+      echo "<a href='create_thread.php'>CreateThread</a>";
+    }
+
+echo "<html>
+      <form action = 'search_thread.php' method = 'post'>
+      <input type = 'text' name = 'search' placeholder = 'Search For Threads'>
+      <input type = 'submit' name = 'submit search'> </button>
+      </form>";
+
 if(isset($_GET['command']) && $_GET['command'] == 'logout'){
   $_SESSION = array();
   if(ini_get("session.use_cookies")) {
