@@ -53,7 +53,8 @@ if(!isset($_SESSION['email'])) {
         <a href='login_page.php'>Log-in</a>";
 }
 if(isset($_SESSION['email'])) {
-  echo "<a href='index.php?command=logout&'>Log out</a>";
+  echo "<a href='following.php'>Following</a>
+        <a href='index.php?command=logout&'>Log out</a>";
 }
 
 // Create connection
