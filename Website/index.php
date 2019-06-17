@@ -125,6 +125,10 @@ if(!isset($_SESSION['email'])) { // get posts here
   $posts=mysqli_query($con,"SELECT * FROM POST");
   //echo $_SESSION['id']. "<br>";//. $_SESSION['password']. "<br>";
 }
+if(isset($_SESSION['thread_name'])) {
+  echo "<br><h2>". $_SESSION['thread_name']. "</h2><br>";
+  $posts=mysqli_query($con,"SELECT P.* FROM POST AS P, CONTAINS WHERE P.Link = CONTAINS.Link AND CONTAINS.Name = '".$_SESSION['thread_name']."'");
+}
 
 if(isset($_GET['votelink'])) {
   // create anonymous user
@@ -150,7 +154,7 @@ $currentPostsLink = $row['Link'];
 $currentPostsThread = mysqli_query($con,"SELECT CONTAINS.Name FROM CONTAINS WHERE CONTAINS.Link = '".$currentPostsLink."'");
 $currentPostsVotes = mysqli_query($con,"SELECT COUNT(*) AS NUMVOTES FROM VOTE WHERE VOTE.Link = '".$currentPostsLink."'");
  echo "<tr>";
- echo "<td><a href='index.php?votelink=".$currentPostsLink."'>".mysqli_fetch_array($currentPostsVotes)['NUMVOTES']."</a></td>"; // TODO: change 0 to query # of votes on the link
+ echo "<td><a href='index.php?votelink=".$currentPostsLink."'>".mysqli_fetch_array($currentPostsVotes)['NUMVOTES']."</a></td>";
  echo "<td>" . "<a href=" . $currentPostsLink . " target='_blank'>view</a>" . "</td>";
  echo "<td>" . $row['Caption'] . "</td>";
 

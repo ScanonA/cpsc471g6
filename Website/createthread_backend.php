@@ -29,7 +29,7 @@
     while ($thread_result = mysqli_fetch_assoc($thread)) {
         $check = $thread_result['Name']. "<br>";
     }
-
+    header('Location:index.php');
     echo $check. "<br>". $email;
 
     mysqli_close($con);

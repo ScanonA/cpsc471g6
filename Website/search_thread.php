@@ -37,7 +37,9 @@ if(!isset($name)) {
     <a href="index.php">Home</a>
     <?php
 } else {
+    $_SESSION ['thread_name'] = $name; 
     echo $name;
+    header('Location:index.php');
 }
 ?>
 

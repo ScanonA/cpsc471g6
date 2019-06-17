@@ -318,7 +318,7 @@ mycursor.execute(inser_to_post, post11)
 mycursor.execute(inser_to_post, post12)
 mycursor.execute(inser_to_post, post13)
 mycursor.execute(inser_to_post, post14)
-
+mydb.commit()
 mycursor.execute(insert_to_video, video1)
 mycursor.execute(insert_to_video, video2)
 mycursor.execute(insert_to_video, video3)
