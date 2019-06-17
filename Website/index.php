@@ -58,6 +58,15 @@ if (mysqli_connect_errno($con))
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
+  if(isset($_GET['followemail']) && isset($_SESSION['email'])) {
+    mysqli_query($con,"INSERT INTO FOLLOW (Email_address1, Email_address2) VALUES('". $_SESSION['email'] ."','". $_GET['followemail'] ."')");
+    $following = mysqli_query($con,"SELECT LOGGED_IN.Name, LOGGED_IN.ID FROM LOGGED_IN WHERE LOGGED_IN.Email_address = '".$_GET['followemail']."'");
+    $followingarray = mysqli_fetch_array($following);
+    $followingName = $followingarray['Name'];
+    $followingID = $followingarray['ID'];
+    echo "<br>Now following ".$followingName." #".$followingID;
+  }
+
   $threads=mysqli_query($con,"SELECT * FROM THREAD"); // get threads here
   echo "<form action='index.php' method='get'>
           <br><h3> Create a post</h3>
@@ -123,6 +132,7 @@ echo "<table border='22'>
 <th>Link</th>
 <th>Caption</th>
 <th>Thread(s)</th>
+<th>Poster (click to follow)</th>
 <th>Comments</th>
 </tr>";
 
@@ -141,9 +151,17 @@ $currentPostsVotes = mysqli_query($con,"SELECT COUNT(*) AS NUMVOTES FROM VOTE WH
       echo $threadrow['Name'].",";
     }  
     echo "</td>";
-
+ if($row['Email_address'] != NULL) {
+    $currentPoster = mysqli_query($con,"SELECT LOGGED_IN.Name, LOGGED_IN.ID FROM LOGGED_IN WHERE LOGGED_IN.Email_address = '".$row['Email_address']."'");
+    $poster = mysqli_fetch_array($currentPoster);
+    $posterName = $poster['Name'];
+    $posterID = $poster['ID'];
+    echo "<td><a href='index.php?followemail=".$row['Email_address']."'>"." ".$posterName." #".$posterID."</td>";
+    // echo "<td>".$row['Email_address']."</td>";
+ } else {
+    echo "<td> </td>";
+ }
  echo "<td>" . "<a href=comment.php?link=".$currentPostsLink." target='_blank'>comments</a>" . "</td>";
-//  echo "<td>" . $row['Email_address'] . "</td>";
  echo "</tr>";
  }
 echo "</table>";
